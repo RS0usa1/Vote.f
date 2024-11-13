@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+    <script src="./index.js"></script>
+    <div class="wrapper">
+        <div class="slide-title">
+          <div class="title login">
+            Login
+          </div>
+          <div class="title signup">
+            Crie sua conta
+          </div>
+        </div>
+        <div class="form-container">
+          <div class="slide-controls" onclick="handlerTab(this, event)">
+            <input type="radio" name="slide" id="login" checked>
+            <input type="radio" name="slide" id="signup">
+            <label for="login" class="slide-button login">Login</label>
+            <label for="signup" class="slide-button signup">Cadastro</label>
+            <div class="slider-button-tab"></div>
+          </div>
+          <div class="form-inner">
+            <form action="#" class="login">
+              <div class="field">
+                <input type="text" placeholder="E-mail" required>
+              </div>
+              <div class="field">
+                <input type="password" placeholder="Senha" required>
+              </div>
+              <div class="password-link">
+                <a href="#">Esqueceu a senha?</a>
+              </div>
+              <div class="field btn">
+                <div class="btn-layer"></div>
+                <input type="submit" value="Entrar">
+              </div>
+              <div class="signup-link">
+                Não tem conta? <a href="">Crie agora</a>
+              </div>
+            </form>
+            <form action="#" class="signup">
+              <div class="field">
+                <input type="text" placeholder="E-mail" required>
+              </div>
+              <div class="field">
+                <input type="password" placeholder="Senha" required>
+              </div>
+              <div class="field">
+                <input type="password" placeholder="Confirme sua senha" required>
+              </div>
+              <div class="field btn">
+                <div class="btn-layer"></div>
+                <input type="submit" value="Signup">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+</body>
+</html>

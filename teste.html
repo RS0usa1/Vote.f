@@ -7,10 +7,6 @@
     <link rel="stylesheet" href="./geral/css/teste.css">
 </head>
 <body>
-    <script src="./geral/js/teste.js"></script>
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    </html>
 <header class="menu">
     <nav>
         <ul>
@@ -32,8 +28,25 @@
         </ul>
     </nav>
 </header>
-<h1 id="logado"></h1>
-<button onclick="sair()">Sair</button>
+<div class="estrutura">
+    <div class="card">
+        <form action="" method="post">
+            <p>Login</p>
+            <input class="botão" inputmode="email" placeholder="exemplo123@gmail.com" type="text" name="E-mail"><br>
+            <input class="botão" placeholder="1234" type="text" name="Senha"><br>
+            <div class="geral">
+                <a href="#">Esqueci minha senha</a>
+            </div>
+               <form action="" method="post">
+                  <input class="portal" type="submit" value="Entrar">
+               </form>
+            <div class="geral">
+                <p>Não tem uma conta?</p>
+                <a href="#">Cadastro</a>
+            </div>
+        </form>
+    </div>
+</div>
 <footer>
     <div class="footer-container">
         <!--  -->

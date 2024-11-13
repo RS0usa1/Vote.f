@@ -1,0 +1,249 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap");
+
+/* remove predeficinicoes do css e cria as variaveis de cor */
+* {
+  --primary-color: #8c00ff;
+  --secondery-color: #000000;
+  --details-color: #7c05f2;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* centraliza o itens e troca a cor de fundo */
+html,
+body {
+  display: grid;
+  height: 100%;
+  width: 100%;
+  place-items: center;
+  background: -webkit-linear-gradient(
+    left,
+    var(--primary-color),
+    var(--secondery-color)
+  );
+}
+/* muda a cor dos itens e textos selecionados */
+::selection {
+  background: var(--details-color);
+  color: #fff;
+}
+
+.wrapper {
+  overflow: hidden;
+  max-with: 390px;
+  background: #fff;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 5px 30px 50px rgba(0, 0, 0, 0.8);
+}
+
+.wrapper .slide-title {
+  display: flex;
+  width: 200%;
+}
+
+.wrapper .title {
+  width: 50%;
+  font-size: 35px;
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .slide-controls {
+  position: relative;
+  display: flex;
+  height: 50px;
+  width: 100%;
+  overflow: hidden;
+  margin: 30px 0 10px 0;
+  justify-content: space-between;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+}
+
+.slide-controls .slide-button {
+  height: 100%;
+  width: 100%;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  text-align: center;
+  line-height: 48px;
+  cursor: pointer;
+  z-index: 1;
+  transition: all 0.6s ease;
+}
+
+.slide-controls label.signup {
+  color: #000;
+}
+
+/* cria uma div no fundo do botao para ser animada trocar de aba */
+.slide-controls .slider-button-tab {
+  position: absolute;
+  height: 100%;
+  width: 50%;
+  left: 0;
+  z-index: 0;
+  border-radius: 5px;
+  background: -webkit-linear-gradient(
+    left,
+    var(--primary-color),
+    var(--secondery-color)
+  );
+  transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* esconde o botao radio */
+input[type="radio"] {
+  display: none;
+}
+
+/* muda a posicao da div de fundo ao selecionar o botao de cadastro */
+#signup:checked ~ .slider-button-tab {
+  left: 50%;
+}
+
+/* mudar cor do text e tipo de cursor ao selecionar o botao de cadastro */
+#signup:checked ~ label.signup {
+  color: #fff;
+  cursor: default;
+  user-select: none;
+}
+
+/* muda cor do texto de login ao selecionar botao de cadastro */
+#signup:checked ~ label.login {
+  color: #000;
+}
+
+#login:checked ~ label.signup {
+  color: #000;
+}
+
+#login:checked ~ label.login {
+  cursor: default;
+  user-select: none;
+}
+
+/* esconde tudo que tiver forma da div */
+.wrapper .form-container {
+  width: 100%;
+  overflow: hidden;
+}
+
+/* dobra o tamanho do container para esconder o campos que nao estao selecionados */
+.form-container .form-inner {
+  display: flex;
+  width: 200%;
+}
+
+/* cria a animacao de transicao dos formularios */
+.form-container .form-inner form {
+  width: 50%;
+  transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* define tamanho dos campos */
+.form-inner form .field {
+  height: 50px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* estiliza campos de input */
+.form-inner form .field input {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  padding-left: 15px;
+  border-radius: 5px;
+  border: 1px solid lightgrey;
+  border-bottom-width: 2px;
+  font-size: 17px;
+  transition: all 0.3s ease;
+}
+
+/* estiliza o campo selecionado */
+.form-inner form .field input:focus {
+  border-color: var(--details-color);
+  box-shadow: inset 0 0 3px #fb6aae;
+}
+
+/* estiliza a legenda do campo */
+.form-inner form .field input::placeholder {
+  color: #999;
+  transition: all 0.3s ease;
+}
+
+/* muda a cor da legenda do campo selecionado */
+form .field input:focus::placeholder {
+  color: #b3b3b3;
+}
+
+.form-inner form .password-link {
+  margin-top: 5px;
+}
+
+/* muda posicao do link de cadastro */
+.form-inner form .signup-link {
+  text-align: center;
+  margin-top: 30px;
+}
+
+/* estiliza links */
+.form-inner form .password-link a,
+.form-inner form .signup-link a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.form-inner form .password-link a:hover,
+.form-inner form .signup-link a:hover {
+  text-decoration: underline;
+}
+
+form .btn {
+  height: 50px;
+  width: 100%;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+}
+
+form .btn .btn-layer {
+  height: 100%;
+  width: 300%;
+  position: absolute;
+  left: -100%;
+  background: -webkit-linear-gradient(
+    right,
+    #691aad,
+    #8f24ed,
+    #8020d4,
+    #42106e
+  );
+  border-radius: 5px;
+  transition: all 0.4s ease;
+}
+
+form .btn:hover .btn-layer {
+  left: 0;
+}
+
+form .btn input[type="submit"] {
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  position: relative;
+  background: none;
+  border: none;
+  color: #fff;
+  padding-left: 0;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+}
