@@ -2,6 +2,8 @@
 
 *{
     font-family: "Poppins", sans-serif;
+    display: grid;
+    align-items: center;
 }
 
 body{
@@ -46,41 +48,6 @@ li a {
  
 li a:hover {
     color: whitesmoke;
-}
- 
-.hea {
-    display: flex;
-    background-color:#3E3636;
-    height: 70px;
-    justify-content: center;
-}
- 
-.na {
-    display: flex;
-    justify-content: center;
-}
- 
-.na ul {
-    display: flex;
-    border-color: rgb(0, 0, 0);
-}
- 
-.na ul li {
-    list-style: none;
-    margin-right: 110px;
-    font-family: "Orbitron", sans-serif;
-    font-size: 16px;
-    margin-top: 10px;
-    vertical-align: middle;
-}
- 
-.u li a {
-    color: rgb(255, 255, 255);
-    text-decoration: none;
-}
- 
-.u li a:hover {
-    color: rgb(255, 255, 255);
 }
 
 footer {
@@ -130,70 +97,152 @@ footer {
     font-size: 12px;
     color: #aaa;
 }
+
 footer ul li{
     list-style-type: none;
 }
 
 .estrutura{
     margin: 0 auto;
-    display: flex;
     margin-top: 100px;
     justify-content: center;
     align-items: center;
     border: 1px solid;
     border-radius: 5px;
-    width: 350px;
-    height: 500px;
+    width: 500px;
+    height: 650px;
     background-color: white;
+    box-shadow: 0px 5px 40px rgba(255, 0, 0, 0.599);
+    padding: 30px;
 }
 
-.card{
-    border: 1px solid;
-    border-radius: 5px;
-    border-color: #000000;
-    justify-content: space-around;
-    display: grid;
-    margin: 20px;
-    width: 300px;
-    height: 300px;
+.estrutura .slide-titulo{
+    display: flex;
+    width: 200%;
 }
 
-.card p{
-    font-size: 30px;
-    justify-content: left;
+.estrutura .titulo {
+    width: 50%;
+    font-size: 35px;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-.botão{
-    border: 1px solid;
-    border-color: rgb(0, 0, 0);
-    border-radius: 25px;
-    background-color: #8a8a8a;
-    color: white;
-    width: 200px;
-    padding: 10px;
-    outline: none;
-    margin-top: 20px;
+.form-container{
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
 }
 
-.botão:focus{
-    box-shadow: 0px 0px 4px #000000;
+.slide-controles{
+    width: 90%;
+    height: 50px;
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    margin: 30px 0 10px 0;
+    justify-content: space-between;
+    border: 1px solid rgb(121, 121, 121);
+    border-radius: 30px;
 }
 
-.portal{
+.slide-botão{
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 500;
+    color: #000000;
     cursor: pointer;
-    background-color: #ff0000;
-    border: 1px solid;
-    border-color: rgb(0, 0, 0);
-    border-radius: 25px;
-    width: 200px;
-    padding: 10px;
-    outline: none;
-    margin-top: 20px;
-    color: white;
-    transition: 0.5s;
+    line-height: 50px;
+    z-index: 1;
+    transition: all 0.6s ease;
 }
 
-.portal:hover{
-    background-color: rgb(255, 255, 255);
-    color: red;
+.slide-controls label.Cadastro {
+    color: #000;
+    justify-content: center;
+}
+
+.slider-button-tab{
+    position: absolute;
+    height: 100%;
+    width: 50%;
+    left: 0;
+    z-index: 0;
+    border-radius: 5px;
+    background: -webkit-linear-gradient(
+    left,
+    var(red),
+    var(blue)
+  );
+    transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* esconde o botao radio */
+input[type="radio"] {
+    display: none;
+}
+
+/* muda a posição da div de fundo ao selecionar o botao de cadastro */
+.cadastro:checked ~ .slider-button-tab{
+    left: 50%;
+}
+
+/* mudar cor do text e tipo de cursor ao selecionar o botao de cadastro */
+#cadastro:checked ~ label.cadastro {
+    color: #000000;
+    cursor: default;
+    user-select: none;
+}
+
+/* muda cor do texto de login ao selecionar botao de cadastro */
+#cadastro:checked ~ label.login {
+    color: #000;
+}
+
+#login:checked ~ label.cadastro {
+    color: #000;
+}
+  
+#login:checked ~ label.login {
+    cursor: default;
+    user-select: none;
+}
+
+/* esconde tudo que tiver fora da div */
+.form-container {
+    width: 100%;
+    overflow: hidden;
+}
+
+/* dobra o tamanho do container para esconder o campos que nao estao selecionados */
+.form-interno{
+    display: flex;
+    width: 300px;
+}
+
+/* cria a animacao de transicao dos formularios */
+.form-interno form{
+    width: 50%;
+    transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* define tamanho dos campos */
+.form-interno form .quadro{
+    height: 50px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* estiliza campos de input */
+.quadro input{
+    height: 100%;
+    width: 100%;
+    outline: none;
+    padding-left: 15px;
+    border-radius: 5px;
+    border: 1px solid lightgrey;
+    border-bottom-width: 2px;
+    font-size: 17px;
+    transition: all 0.3s ease;
 }

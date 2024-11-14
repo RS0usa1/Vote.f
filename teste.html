@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title></title>
     <link rel="stylesheet" href="./geral/css/teste.css">
 </head>
 <body>
@@ -16,36 +16,59 @@
         </ul>
     </nav>
 </header>
-<header class="hea">
-    <nav class="na">
-        <ul class="u">
-            <li><a href="">Romance</a></li>
-            <li><a href="">Ação</a></li>
-            <li><a href="">Drama</a></li>
-            <li><a href="">Terror</a></li>
-            <li><a href="">Comédia</a></li>
-            <li><a href="">Ficção Científica</a></li>
-        </ul>
-    </nav>
-</header>
 <div class="estrutura">
-    <div class="card">
-        <form action="" method="post">
-            <p>Login</p>
-            <input class="botão" inputmode="email" placeholder="exemplo123@gmail.com" type="text" name="E-mail"><br>
-            <input class="botão" placeholder="1234" type="text" name="Senha"><br>
-            <div class="geral">
-                <a href="#">Esqueci minha senha</a>
-            </div>
-               <form action="" method="post">
-                  <input class="portal" type="submit" value="Entrar">
-               </form>
-            <div class="geral">
-                <p>Não tem uma conta?</p>
-                <a href="#">Cadastro</a>
-            </div>
-        </form>
-    </div>
+    <div class="slide-titulo">
+        <div class="titulo login">
+          Login
+        </div>
+        <div class="titulo cadastro">
+          Crie sua conta
+        </div>
+    </div> 
+    <div class="form-container">
+        <div class="slide-controles" onclick="handlerTab(this, event)">
+        <input type="radio" name="slide" id="login" checked>
+        <input type="radio" name="slide" id="cadastro">
+        <label for="login" class="slide-botão login">Login</label>
+        <label for="cadastro" class="slide-botão cadastro">Cadastro</label>
+        <div class="slider-button-tab"></div>
+        </div>
+        <div class="form-interno">
+            <form class="login" action="#" method="post">
+                <div class="quadro">
+                    <input type="text" placeholder="E-mail" name="E-mail" required>
+                </div>
+                <div class="quadro">
+                    <input type="text" placeholder="Senha" name="Senha" required>
+                </div>
+                <div class="btn-senha">
+                    <a href="#">Esqueceu a senha?</a>
+                </div>
+                <div class="field btn">
+                    <div class="btn-layer"></div>
+                    <input type="submit" value="Entrar">
+                  </div>
+                  <div class="contato">
+                    Não tem conta? <a href="#">Crie agora</a>
+                  </div>
+                  <form class="Cont." action="#" method="post">
+                    <div class="quadro">
+                        <input type="text" placeholder="E-mail" name="E-mail" required>
+                      </div>
+                      <div class="quadro">
+                        <input type="password" placeholder="Senha" name="Senha" required>
+                      </div>
+                      <div class="quadro">
+                        <input type="password" placeholder="Confirme sua senha" name="Confirmar Senha" required>
+                      </div>
+                      <div class="field btn">
+                        <div class="btn-layer"></div>
+                        <input type="submit" value="Entrar">
+                      </div>
+                  </form>
+            </form>
+        </div>
+   </div>
 </div>
 <footer>
     <div class="footer-container">
