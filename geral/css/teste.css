@@ -4,8 +4,12 @@
     font-family: "Poppins", sans-serif;
     display: grid;
     align-items: center;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+html,
 body{
     background-image: url(../img/fundo.svg);
     background-position: center;
@@ -13,6 +17,8 @@ body{
     background-repeat: no-repeat;
     background-attachment: fixed;
     display: grid;
+    height: 100%;
+    width: 100%;
 }
 
 .menu {
@@ -109,9 +115,9 @@ footer ul li{
     align-items: center;
     border: 1px solid white;
     border-radius: 5px;
-    width: 500px;
+    max-width: 390px;
     height: 700px;
-    background-color: white;
+    background: white;
     box-shadow: 0px 5px 40px rgba(0, 0, 0, 0.599);
     padding: 30px;
 }
@@ -130,15 +136,15 @@ footer ul li{
 }
 
 .slide-controles{
-    width: 90%;
+    width: 100%;
     height: 50px;
     display: flex;
     position: relative;
-    overflow: hidden;
     margin: 30px 0 10px 0;
     justify-content: space-between;
     border: 1px solid rgb(121, 121, 121);
-    border-radius: 30px;
+    border-radius: 5px;
+    overflow: hidden;
 }
 
 .slide-botão{
@@ -159,6 +165,7 @@ footer ul li{
     justify-content: center;
 }
 
+/* cria uma div no fundo do botao para ser animada trocar de aba */
 .slider-button-tab{
     position: absolute;
     height: 100%;
@@ -180,23 +187,23 @@ input[type="radio"] {
 }
 
 /* muda a posição da div de fundo ao selecionar o botao de cadastro */
-.cadastro:checked ~ .slider-button-tab{
+#signup:checked ~ .slider-button-tab{
     left: 50%;
 }
 
 /* mudar cor do text e tipo de cursor ao selecionar o botao de cadastro */
-#cadastro:checked ~ label.cadastro {
+#signup:checked ~ label.signup {
     color: #000000;
     cursor: default;
     user-select: none;
 }
 
 /* muda cor do texto de login ao selecionar botao de cadastro */
-#cadastro:checked ~ label.login {
+#signup:checked ~ label.login {
     color: #000;
 }
 
-#login:checked ~ label.cadastro {
+#login:checked ~ label.signup {
     color: #000;
 }
   
@@ -207,18 +214,14 @@ input[type="radio"] {
 
 /* esconde tudo que tiver fora da div */
 .form-container {
-    width: 450px;
-    height: 650px;
+    width: 100%;
     overflow: hidden;
-    border: 1px solid black;
 }
 
 /* dobra o tamanho do container para esconder o campos que nao estao selecionados */
 .form-interno{
     display: flex;
-    width: 450px;
-    height: 650px;
-    padding-left: 10px;
+    width: 200%;
 }
 
 /* cria a animacao de transicao dos formularios */
@@ -230,8 +233,8 @@ input[type="radio"] {
 /* define tamanho dos campos */
 .quadro{
     height: 50px;
-    width: 400px;
-    margin-top: 15px;
+    width: 100%;
+    margin-top: 20px;
 }
 
 /* estiliza campos de input */
@@ -241,7 +244,7 @@ input[type="radio"] {
     outline: none;
     padding-left: 15px;
     border-radius: 5px;
-    border: 1px solid lightgrey;
+    border: 1px solid rgb(135, 135, 135);
     border-bottom-width: 2px;
     font-size: 17px;
     transition: all 0.3s ease;
@@ -266,23 +269,20 @@ input[type="radio"] {
 
 .btn-senha {
     margin-top: 5px;
-    display: flex;
 } 
 
 /* muda posicao do link de cadastro */
 .contato {
     text-align: center;
     padding-top: 30px;
-    display: flex;
 }
 
-/* estiliza links */
+/* estiliza os links de criar a conta de esqueceu senha*/
 .btn-senha a,
 .contato a {
   color: rgba(255, 0, 0, 0.791);
   text-decoration: none;
   position: relative;
-  justify-content: center;
 }
 
 .btn-senha a:hover,
@@ -312,22 +312,22 @@ input[type="radio"] {
     transform: scaleX(1);
 }
 
+/* Estiliza o botão de Entrar */
 .btn {
     height: 70px;
     width: 100%;
-    border-radius: 25px;
-    overflow: hidden;
+    border-radius: 30px;
     display: flex;
     position: relative;
 }
 
-.btn-layer1 {
-    width: 300px;
-    height: 50px;
+.btn-layer {
+    width: 300%;
+    height: 100%;
     border-radius: 25px;
     justify-content: center;
-    transition: all 0.4s ease;
-    margin-top: 15px;
+    position: absolute;
+    transition: all 0.4s ease; 
 }
 
 .btn:hover .btn-layer {
@@ -335,16 +335,19 @@ input[type="radio"] {
 }
 
 .btn input[type="submit"] {
-    height: 100%;
-    width: 100%;
     z-index: 1;
     position: relative;
     background: none;
-    border: none;
-    color: #fff;
-    padding-left: 0;
-    border-radius: 5px;
+    border: 1px solid;
     font-size: 20px;
-    font-weight: 500;
     cursor: pointer;
+    font-weight: 600;
+    color: rgb(0, 0, 0);
+    padding-left: 0;
+    border-radius: 30px;
+    justify-content: center;
+    width: 90%;
+    height: 80%;
+    margin: 0 auto;
+    margin-top: 20px;
 }

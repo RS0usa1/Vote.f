@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
-    <link rel="stylesheet" href="./geral/css/teste.css">
+    <link rel="stylesheet" href="../css/teste.css">
 </head>
 <body>
+    <script src="../js/teste.js"></script>
 <header class="menu">
     <nav>
         <ul>
@@ -28,9 +29,9 @@
     <div class="form-container">
         <div class="slide-controles" onclick="handlerTab(this, event)">
         <input type="radio" name="slide" id="login" checked>
-        <input type="radio" name="slide" id="cadastro">
+        <input type="radio" name="slide" id="signup">
         <label for="login" class="slide-botão login">Login</label>
-        <label for="cadastro" class="slide-botão cadastro">Cadastro</label>
+        <label for="signup" class="slide-botão signup">Cadastro</label>
         <div class="slider-button-tab"></div>
         </div>
         <div class="form-interno">
@@ -44,28 +45,28 @@
                 <div class="btn-senha">
                     <a href="#">Esqueceu a senha?</a>
                 </div>
-                <div class="btn">
+                <div class="quadro btn">
                     <div class="btn-layer"></div>
-                        <input type="submit" value="Entrar" class="btn-layer1">
+                        <input type="submit" value="Entrar">
                 </div>
                 <div class="contato">
                     Não tem conta?<a href="#">Crie agora</a>
                 </div>
-                  <form class="Cont." action="#" method="post">
-                    <div class="quadro">
-                        <input type="email" placeholder="E-mail" name="E-mail" required>
-                      </div>
-                      <div class="quadro">
-                        <input type="password" placeholder="Senha" name="Senha" required>
-                      </div>
-                      <div class="quadro">
-                        <input type="password" placeholder="Confirme sua senha" name="Confirmar Senha" required>
-                      </div>
-                      <div class="btn">
-                        <div class="btn-layer"></div>
-                        <input type="submit" value="Entrar">
-                      </div>
-                  </form>
+            </form>
+            <form class="signup" action="#" method="post">
+            <div class="quadro">
+                <input type="email" placeholder="E-mail" name="E-mail" required>
+                </div>
+                <div class="quadro">
+                <input type="password" placeholder="Senha" name="Senha" required>
+                </div>
+                <div class="quadro">
+                <input type="password" placeholder="Confirme sua senha" name="Confirmar Senha" required>
+                </div>
+                <div class="quadro btn">
+                <div class="btn-layer"></div>
+                <input type="submit" value="Entrar">
+                </div>
             </form>
         </div>
    </div>
