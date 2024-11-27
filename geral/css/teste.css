@@ -362,12 +362,12 @@ input[type="radio"] {
 .btn input[type="submit"] {
     z-index: 1;
     position: relative;
-    background: none;
+    background: red;
     border: 1px solid;
     font-size: 20px;
     cursor: pointer;
     font-weight: 600;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     padding-left: 0;
     border-radius: 30px;
     justify-content: center;

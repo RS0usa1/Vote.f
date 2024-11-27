@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title></title>
     <link rel="stylesheet" href="../css/teste2.css">
 </head>
 <body>
@@ -17,12 +17,20 @@
         </nav>
     </header>
         <div class="container">
-            <div class="quadro">
-               <input class="style-email" type="text" placeholder="Email" name="E-mail" required>
+            <div class="container-title">
+                <div class="title">
+                    <h1>Redefina sua senha</h1>
+                    <p>Ensira seu email, e nós lhe enviaremos as instruções para redefinir sua senha. </p>
+                </div>
             </div>
-            <div class="quadro">
-               <input class="style-enviar" type="submit" value="Enviar">
-            </div>
+            <form class="form" action="../php/teste2.php" method="post">
+                <div class="quadro">
+                    <input class="style-email" type="email" placeholder="E-mail" name="E-mail" required>
+                </div>
+                <div class="quadro">
+                    <input class="style-enviar" type="submit" value="Enviar">
+                </div>
+            </form>
         </div>
     <footer>
         <div class="footer-container">

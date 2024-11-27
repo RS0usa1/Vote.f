@@ -26,7 +26,7 @@ body{
     background-color:#000000;
     height: 70px;
     justify-content: center;
-    /* font-family: "Raleway", sans-serif; */
+    position: top;
 }
  
 nav {
@@ -113,22 +113,87 @@ footer ul li{
     border: 0px solid rgb(255, 255, 255);
     border-radius: 5px;
     box-shadow: 0 5px 10px 5px rgba(0, 0, 0, 0.581);
-    height: 400px;
-    width: 400px;
+    height: 60%;
+    width: 20%;
     justify-content: center;
     margin: 0 auto;
-    margin-top: 100px;
+    margin-top: 200px;
+    margin-bottom: 100px;
     background: white;
 }
 
 .quadro{
-    border: 1px solid black;
+    border: 0px solid;
     border-radius: 30px;
     width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
 }
 
 .quadro input{
-    width: 300px;
-    border-radius: 30px;
+    width: 70%;
     height: 50px;
+    border-radius: 30px;
+    border: 1px solid rgb(162, 162, 162);
+    transition: all 0.3s ease;
+    outline: none;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.style-email{
+    padding-left: 15px;
+}
+
+.style-email::placeholder{
+    justify-content: center;
+    color: black;
+    transition: all 0.3s ease;
+}
+
+.quadro input:focus {
+    border-color: red;
+    box-shadow: inset 0 0 3px #ff0000;
+}
+
+.quadro input:focus::placeholder {
+    color: #ff0000;
+}
+
+.quadro input::placeholder {
+    color: #000000;
+    transition: all 0.3s ease;
+}
+
+.style-enviar{
+    background-color: red;
+    color: white;
+    justify-content: center;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.container-title{
+    width: 80%;
+    height: 250px;
+    border: 0px solid black;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.title{
+    display: grid;
+    text-align: center;
+}
+
+.title h1{
+    font-weight: 500;
+    font-size: 40px;
+}
+
+.form{
+    margin-bottom: 20px;
 }
