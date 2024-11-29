@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
-    <link rel="stylesheet" href="../css/teste2.css">
+    <link rel="stylesheet" href="../css/esq-senha.css">
 </head>
 <body>
     <header class="menu">
@@ -23,7 +23,7 @@
                     <p>Ensira seu email, e nós lhe enviaremos as instruções para redefinir sua senha. </p>
                 </div>
             </div>
-            <form class="form" action="" method="post">
+            <form class="form" action="./teste3.php" method="post">
                 <div class="quadro">
                     <input class="style-email" type="email" placeholder="E-mail" name="E-mail" required>
                 </div>
@@ -69,3 +69,10 @@
     </footer>
 </body>
 </html>
+
+<?php
+
+//Formulario de email
+if($_SERVER['REQUEST_METHOD'])
+
+?>

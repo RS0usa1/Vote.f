@@ -2,7 +2,7 @@
 
 *{
     font-family: "Poppins", sans-serif;
-    display: grid;
+    /* display: grid; */
     align-items: center;
     margin: 0;
     padding: 0;
@@ -122,8 +122,20 @@ footer ul li{
     box-shadow: 0px 5px 40px rgba(0, 0, 0, 0.599);
     padding: 30px;
     overflow: hidden;
+    opacity: 0; /* Começa invisível */
+    transform: translateY(20px); /* Começa deslocada */
+    animation: fadeIn 1s ease-out forwards; /* Aplica a animação de fade-in */
 }
-
+@keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px); /* Começa um pouco para baixo */
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0); /* Fica na posição original */
+    }
+  }
 /* Define o tamanho em que o titulo vai ficar */
 .slide-titulo{
     display: flex;
@@ -226,6 +238,7 @@ input[type="radio"] {
 .form-interno{
     display: flex;
     width: 200%;
+    height: 100%;
 }
 
 /* cria a animacao de transicao dos formularios */
@@ -304,7 +317,7 @@ input[type="radio"] {
     content: '';
     border-radius: 5px;
     height: 2px;
-    width: 50%;
+    width: 100%;
     text-align: center;
     align-self: center;
     justify-self: center;
@@ -320,7 +333,7 @@ input[type="radio"] {
     content: '';
     border-radius: 5px;
     height: 2px;
-    width: 30%;
+    width: 100%;
     text-align: center;
     align-self: center;
     justify-self: center;
@@ -344,15 +357,6 @@ input[type="radio"] {
     border-radius: 30px;
     display: flex;
     position: relative;
-}
-
-.btn-layer {
-    width: 300%;
-    height: 100%;
-    border-radius: 25px;
-    justify-content: center;
-    position: absolute;
-    transition: all 0.4s ease; 
 }
 
 .btn:hover .btn-layer {

@@ -23,7 +23,7 @@
                 <p>Crie uma senha nova que não seja a mesma que a anterior, possua pelo menos 3 digitos, 2 caracteres especiais e 5 letras. </p>
             </div>
         </div>
-        <form class="form" action="../php/teste3.php" method="post">
+        <form class="form" action="loginCadastro.php" method="post">
             <div class="quadro">
                 <input type="password" placeholder="Senha" name="Senha" required>
             </div>

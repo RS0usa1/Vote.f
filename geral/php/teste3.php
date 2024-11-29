@@ -1,43 +1,48 @@
+<?php
+// Definindo as variáveis
+$senha = isset($_POST['Senha']) ? $_POST['Senha'] : '';
+$confirmar = isset($_POST['confirmarSenha']) ? $_POST['confirmarSenha'] : '';
+
+// Função para validar a senha
+function validar_input($senha)
+{
+    // Verifica se a entrada contém pelo menos 3 dígitos
+    $tem_digitos = preg_match_all('/\d/', $senha) >= 3;
+
+    // Verifica se a entrada contém pelo menos 2 caracteres especiais
+    $tem_caracteres_especiais = preg_match_all('/[^a-zA-Z0-9]/', $senha) >= 2;
+
+    // Verifica se a entrada contém pelo menos 5 letras
+    $tem_letras = preg_match_all('/[a-zA-Z]/', $senha) >= 5;
+
+    // Se todas as condições forem atendidas, retorna true, caso contrário, false
+    return $tem_digitos && $tem_caracteres_especiais && $tem_letras;
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if ($senha == $confirmar) {
+        // Verifica se o input atende às condições
+        if (validar_input($senha)) {
+            echo '<script> alert("O input é válido!");</script>';
+            header('Location: ../html/teste.html');
+        } else {
+            echo '<script> alert("O input não é válido. Certifique-se de que possui: \\n- Pelo menos 3 dígitos \\n- Pelo menos 2 caracteres especiais \\n- Pelo menos 5 letras");</script>';
+        }
+    } else {
+        echo '<script> alert("As senhas não são iguais!");</script>';
+    }
+}
+?>
 
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alterar Senha</title>
     <link rel="stylesheet" href="../css/teste3.css">
-    <script>
-        // Função JavaScript para validar os requisitos da senha
-        function validarFormulario() {
-            var senha = document.getElementById('senha').value;
-            var confirmarSenha = document.getElementById('confirmarSenha').value;
-
-            // Verifica se as senhas são iguais
-            if (senha !== confirmarSenha) {
-                alert("As senhas não são iguais.");
-                return false;
-            }
-
-            // Função para validar os requisitos da senha
-            function validarInput(senha) {
-                var temDigitos = /\d/.test(senha) && (senha.match(/\d/g) || []).length >= 3;
-                var temCaracteresEspeciais = /[^a-zA-Z0-9]/.test(senha) && (senha.match(/[^a-zA-Z0-9]/g) || []).length >= 2;
-                var temLetras = /[a-zA-Z]/.test(senha) && (senha.match(/[a-zA-Z]/g) || []).length >= 5;
-                
-                return temDigitos && temCaracteresEspeciais && temLetras;
-            }
-
-            // Verifica os requisitos da senha
-            if (!validarInput(senha)) {
-                alert('A senha deve conter: \n- Pelo menos 3 dígitos \n- Pelo menos 2 caracteres especiais \n- Pelo menos 5 letras');
-                return false;
-            }
-
-            // Se passar em todas as validações, o formulário é enviado
-            return true;
-        }
-    </script>
 </head>
+
 <body>
     <header class="menu">
         <nav>
@@ -92,46 +97,44 @@
                 <a href="#" target="_blank">LinkedIn</a> |
                 <a href="#" target="_blank">X</a>
             </div>
-            
+
         </div>
         <div class="footer-bottom">
             <p>&copy; 2024 vote.f. Todos os direitos reservados.</p>
         </div>
     </footer>
-</body>
-<?php
-// Definindo as variáveis
-$senha = isset($_POST['Senha']) ? $_POST['Senha'] : '';
-$confirmar = isset($_POST['confirmarSenha']) ? $_POST['confirmarSenha'] : '';
+    <script>
+        // Função JavaScript para validar os requisitos da senha
+        function validarFormulario() {
+            var senha = document.getElementById('senha').value;
+            var confirmarSenha = document.getElementById('confirmarSenha').value;
 
-// Função para validar a senha
-function validar_input($senha)
-{
-    // Verifica se a entrada contém pelo menos 3 dígitos
-    $tem_digitos = preg_match_all('/\d/', $senha) >= 3;
+            // Verifica se as senhas são iguais
+            if (senha !== confirmarSenha) {
+                alert("As senhas não são iguais.");
+                return false;
+            }
 
-    // Verifica se a entrada contém pelo menos 2 caracteres especiais
-    $tem_caracteres_especiais = preg_match_all('/[^a-zA-Z0-9]/', $senha) >= 2;
+            // Função para validar os requisitos da senha
+            function validarInput(senha) {
+                var temDigitos = /\d/.test(senha) && (senha.match(/\d/g) || []).length >= 3;
+                var temCaracteresEspeciais = /[^a-zA-Z0-9]/.test(senha) && (senha.match(/[^a-zA-Z0-9]/g) || []).length >= 2;
+                var temLetras = /[a-zA-Z]/.test(senha) && (senha.match(/[a-zA-Z]/g) || []).length >= 5;
 
-    // Verifica se a entrada contém pelo menos 5 letras
-    $tem_letras = preg_match_all('/[a-zA-Z]/', $senha) >= 5;
+                return temDigitos && temCaracteresEspeciais && temLetras;
+            }
 
-    // Se todas as condições forem atendidas, retorna true, caso contrário, false
-    return $tem_digitos && $tem_caracteres_especiais && $tem_letras;
-}
+            // Verifica os requisitos da senha
+            if (!validarInput(senha)) {
+                alert('A senha deve conter: \n- Pelo menos 3 dígitos \n- Pelo menos 2 caracteres especiais \n- Pelo menos 5 letras');
+                return false;
+            }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if ($senha == $confirmar) {
-        // Verifica se o input atende às condições
-        if (validar_input($senha)) {
-            echo '<script> alert("O input é válido!");</script>';
-            header('Location: ../html/teste.html');
-        } else {
-            echo '<script> alert("O input não é válido. Certifique-se de que possui: \\n- Pelo menos 3 dígitos \\n- Pelo menos 2 caracteres especiais \\n- Pelo menos 5 letras");</script>';
+            // Se passar em todas as validações, o formulário é enviado
+            return true;
         }
-    } else {
-        echo '<script> alert("As senhas não são iguais!");</script>';
-    }
-}
-?>
+    </script>
+</body>
+
 </html>
+
