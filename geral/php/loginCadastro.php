@@ -113,78 +113,61 @@
     </footer>
 </body>
 
+
 <?php
 
-//formulario de cadastro
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['nome']) && isset($_POST['email']) && isset($_POST['senha']) && isset($_POST['confirmarsenha'])) {
-    
-    $nome = $_POST['nome'];
-    $email = $_POST['email'];
-    $senha = $_POST['senha'];
-    $confirmarsenha = $_POST['confirmarsenha'];
+// Caminho do arquivo de dados
+$arquivoCadastro = "cadastro.txt";
 
+// Cadastro de novo usuário
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nome'], $_POST['email'], $_POST['senha'], $_POST['confirmarsenha'])) {
+    $nome = trim($_POST['nome']);
+    $email = trim($_POST['email']);
+    $senha = trim($_POST['senha']);
+    $confirmarSenha = trim($_POST['confirmarsenha']);
 
-    //vamos abrir o arquivo e salvar os dados
-    $cadastroArquivo = "cadastro.txt";
-    $handle = fopen($cadastroArquivo, "w");
-
-    if ($senha !== $confirmarsenha) {
-        echo "As senhas não coincidem.";
+    // Validações básicas
+    if ($senha !== $confirmarSenha) {
+        echo "<script>alert('As senhas não coincidem.');</script>";
         return;
     }
 
-    $dados = $nome . "," . $email . "," . $senha . "\n";
-
-    $file = fopen($cadastroArquivo, 'a');
-
-    if ($file) {
-        fwrite($file, $dados);
-        fclose($file);
-    } else {
-        echo "Erro ao abrir o cadastroArquivo.";
-    }
-}
-
-//Formulario de Login
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['emaillogin']) && isset($_POST['senhalogin'])) {
-    $emaillogin = $_POST['emaillogin'];
-    $senhalogin = $_POST['senhalogin'];
-
-
-    //vamos abrir o arquivo e salvar os dados
-    $arquivo = "cadastro.txt";
-
-    $file = fopen($arquivo, 'r');
-
-    if ($file) {
-        $credenciaisValidas = false;
-
-        // Lê cada linha do arquivo
-        while (($linha = fgets($file)) !== false) {
-            $dados = explode(",", trim($linha));
-
-
-            $emailRegistrado = $dados[1];  // O email está na segunda posição
-            $senhaRegistrada = $dados[2];  // A senha está na terceira posição
-
-            // Compara com as credenciais fornecidas
-            if ($emailRegistrado === $emaillogin && $senhaRegistrada === $senhalogin) {
-                $credenciaisValidas = true;
-                break; // Encerra a busca quando encontrar as credenciais corretas
+    // Verifica se o e-mail já está cadastrado
+    if (file_exists($arquivoCadastro)) {
+        $usuarios = file($arquivoCadastro, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        foreach ($usuarios as $usuario) {
+            $dados = explode(",", $usuario);
+            if ($dados[1] === $email) {
+                echo "<script>alert('E-mail já cadastrado.');</script>";
+                return;
             }
         }
-
-        fclose($file);
-
-        if ($credenciaisValidas) {
-            // header('Location: ');
-            echo  "<script>alert('FUNCIONOU');</script>";
-        } else {
-            echo  "<script>alert('Usuário ou Senha incorretos!!');</script>";
-        }
-    } else {
-        echo "Erro ao abrir o arquivo.";
     }
+
+    // Salva o novo usuário
+    $dados = $nome . "," . $email . "," . $senha . "\n";
+    file_put_contents($arquivoCadastro, $dados, FILE_APPEND);
+    echo "<script>alert('Cadastro realizado com sucesso!');</script>";
 }
+
+// Login do usuário
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['emaillogin'], $_POST['senhalogin'])) {
+    $emailLogin = trim($_POST['emaillogin']);
+    $senhaLogin = trim($_POST['senhalogin']);
+
+    // Verifica credenciais no arquivo
+    if (file_exists($arquivoCadastro)) {
+        $usuarios = file($arquivoCadastro, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        foreach ($usuarios as $usuario) {
+            $dados = explode(",", $usuario);
+            if ($dados[1] === $emailLogin && $dados[2] === $senhaLogin) {
+                echo "<script>alert('Login realizado com sucesso!');</script>";
+                return;
+            }
+        }
+    }
+    echo "<script>alert('Usuário ou senha incorretos.');</script>";
+}
+
 
 ?>

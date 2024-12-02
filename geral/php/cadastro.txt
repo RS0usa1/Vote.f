@@ -1,0 +1,3 @@
+richard,richard@gmail.com,123
+matheus2,matheuss@gmail.com,1234
+lucasingameplay,lucas@gmail.com,12345

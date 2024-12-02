@@ -83,7 +83,7 @@ footer {
     font-size: 18px;
     color: #cb96da;
 }
- 
+
 .footer-section p,
 .footer-section a {
     color: #7c7a7a;
@@ -113,7 +113,7 @@ footer ul li{
     border: 0px solid rgb(255, 255, 255);
     border-radius: 5px;
     box-shadow: 0 5px 10px 5px rgba(0, 0, 0, 0.581);
-    height: 60%;
+    height: 65%;
     width: 20%;
     justify-content: center;
     margin: 0 auto;
@@ -134,7 +134,6 @@ footer ul li{
     }
   }
 
-
 .quadro{
     border: 0px solid;
     border-radius: 30px;
@@ -154,16 +153,7 @@ footer ul li{
     outline: none;
     font-weight: 500;
     font-size: 15px;
-}
-
-.style-email{
     padding-left: 15px;
-}
-
-.style-email::placeholder{
-    justify-content: center;
-    color: black;
-    transition: all 0.3s ease;
 }
 
 .quadro input:focus {
@@ -177,6 +167,30 @@ footer ul li{
 
 .quadro input::placeholder {
     color: #000000;
+    transition: all 0.3s ease;
+}
+
+.style-email,
+.conf-senha,
+.style-senha{
+    padding-left: 15px;
+}
+
+.style-email::placeholder{
+    justify-content: center;
+    color: black;
+    transition: all 0.3s ease;
+}
+
+.style-senha::placeholder{
+    justify-content: center;
+    color: black;
+    transition: all 0.3s ease;
+}
+
+.conf-senha::placeholder{
+    justify-content: center;
+    color: black;
     transition: all 0.3s ease;
 }
 
@@ -195,6 +209,7 @@ footer ul li{
     justify-content: center;
     align-items: center;
     margin: 0 auto;
+    display: grid;
 }
 
 .title{
@@ -208,5 +223,5 @@ footer ul li{
 }
 
 .form{
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }

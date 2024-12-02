@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Verifica se o input atende às condições
         if (validar_input($senha)) {
             echo '<script> alert("O input é válido!");</script>';
-            header('Location: ../html/teste.html');
+            header('Location: ../html/loginCadastro.php');
         } else {
             echo '<script> alert("O input não é válido. Certifique-se de que possui: \\n- Pelo menos 3 dígitos \\n- Pelo menos 2 caracteres especiais \\n- Pelo menos 5 letras");</script>';
         }
