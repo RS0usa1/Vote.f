@@ -45,7 +45,7 @@
                         <input type="password" placeholder="Senha" name="senhalogin" required>
                     </div>
                     <div class="btn-senha">
-                        <a href="esq-senha.php">Esqueceu a senha?</a>
+                        <a href="../php/esqsenha.php">Esqueceu a senha?</a>
                     </div>
                     <div class="quadro btn">
                         <input type="submit" value="Entrar">
@@ -53,9 +53,7 @@
                     <div class="contato">
                         Não tem conta?<a href="">Crie agora</a>
                     </div>
-                </form>
-
-
+                    </form>
                 <form class="signup" action="loginCadastro.php" method="post">
                     <div class="quadro">
                         <input type="text" placeholder="Nome" name="nome" required>
@@ -73,6 +71,16 @@
                         <input type="submit" value="Entrar">
                     </div>
                 </form>
+            </div>
+            <div class="requisito">
+                <div class="sub-requisito">
+                    <input type="checkbox" required>
+                    <p>Eu concordo com os termos de segurança, e estou ciente de que meus resultados serão visualizados pela equipe VOTE.F para pesquisas com relação aos meus votos.</p>
+                </div>
+                <div class="sub-requisito">
+                    <input type="checkbox" required> 
+                    <p>Quero que meus votos sejam anônimos, sem aparecerem nas pesquisas da VOTE.F.</p>
+                </div>
             </div>
         </div>
     </div>

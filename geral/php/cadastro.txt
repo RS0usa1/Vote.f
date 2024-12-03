@@ -1,3 +1,4 @@
-richard,richard@gmail.com,123
+richard,richard@gmail.com,123@#asdfg
 matheus2,matheuss@gmail.com,1234
 lucasingameplay,lucas@gmail.com,12345
+felipe,felipe@gmail.com,123@#asdfg

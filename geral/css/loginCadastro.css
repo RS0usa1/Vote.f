@@ -115,7 +115,7 @@ footer ul li{
     justify-content: center;
     align-items: center;
     border: 1px solid white;
-    height: 700px;
+    height: 800px;
     max-width: 390px;
     border-radius: 5px;
     background: white;
@@ -379,4 +379,22 @@ input[type="radio"] {
     height: 80%;
     margin: 0 auto;
     margin-top: 20px;
+}
+
+.requisito{
+    display: grid;
+    width: 100%;
+    height: 150px;
+}
+
+.sub-requisito{
+    display: flex;
+}
+
+.requisito input{
+    margin-right: 10px;
+}
+
+.requisito p{
+    font-size: 10px;
 }
