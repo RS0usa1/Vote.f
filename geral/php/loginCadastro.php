@@ -1,3 +1,68 @@
+<?php
+
+// Caminho do arquivo de dados
+$arquivoCadastro = "cadastro.txt";
+
+// Cadastro de novo usuário
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nome'], $_POST['email'], $_POST['senha'], $_POST['confirmarsenha'])) {
+    $nome = trim($_POST['nome']);
+    $email = trim($_POST['email']);
+    $senha = trim($_POST['senha']);
+    $confirmarSenha = trim($_POST['confirmarsenha']);
+
+    // Validações básicas
+    if ($senha !== $confirmarSenha) {
+        echo "<script>alert('As senhas não coincidem.');</script>";
+        return;
+    }
+
+    // Verifica se o e-mail já está cadastrado
+    if (file_exists($arquivoCadastro)) {
+        $usuarios = file($arquivoCadastro, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        foreach ($usuarios as $usuario) {
+            $dados = explode(",", $usuario);
+            if ($dados[1] === $email) {
+                echo "<script>alert('E-mail já cadastrado.');</script>";
+                return;
+            }
+        }
+    }
+
+    // Salva o novo usuário
+    $dados = $nome . "," . $email . "," . $senha . "\n";
+    file_put_contents($arquivoCadastro, $dados, FILE_APPEND);
+    echo "<script>alert('Cadastro realizado com sucesso!');</script>";
+}
+
+// Login do usuário
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['emaillogin'], $_POST['senhalogin'])) {
+    $emailLogin = trim($_POST['emaillogin']);
+    $senhaLogin = trim($_POST['senhalogin']);
+   
+    $loginValido = false;
+    // Verifica credenciais no arquivo
+    if (file_exists($arquivoCadastro)) {
+        $usuarios = file($arquivoCadastro, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        foreach ($usuarios as $usuario) {
+            $dados = explode(",", $usuario);
+     
+            if (trim($dados[1]) == $emailLogin && trim($dados[2]) == $senhaLogin) {
+            
+                $loginValido = true; // Login válido
+                header('Location: index.html');
+            }
+        }
+    }
+
+    if ($loginValido == true) {
+        echo "<script>alert('Login realizado com sucesso!');";
+        // header('Location: index.html');
+    } else {
+        echo "<script>alert('Usuário ou senha incorretos.');</script>";
+    }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -37,7 +102,7 @@
                 <div class="slider-button-tab"></div>
             </div>
             <div class="form-interno">
-                <form class="login" action="loginCadastro.php" method="post">
+                <form class="login" action="" method="post">
                     <div class="quadro">
                         <input type="email" placeholder="E-mail" name="emaillogin" required>
                     </div>
@@ -53,7 +118,7 @@
                     <div class="contato">
                         Não tem conta?<a href="">Crie agora</a>
                     </div>
-                    </form>
+                </form>
                 <form class="signup" action="loginCadastro.php" method="post">
                     <div class="quadro">
                         <input type="text" placeholder="Nome" name="nome" required>
@@ -78,7 +143,7 @@
                     <p>Eu concordo com os termos de segurança, e estou ciente de que meus resultados serão visualizados pela equipe VOTE.F para pesquisas com relação aos meus votos.</p>
                 </div>
                 <div class="sub-requisito">
-                    <input type="checkbox" required> 
+                    <input type="checkbox" required>
                     <p>Quero que meus votos sejam anônimos, sem aparecerem nas pesquisas da VOTE.F.</p>
                 </div>
             </div>
@@ -121,61 +186,3 @@
     </footer>
 </body>
 
-
-<?php
-
-// Caminho do arquivo de dados
-$arquivoCadastro = "cadastro.txt";
-
-// Cadastro de novo usuário
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nome'], $_POST['email'], $_POST['senha'], $_POST['confirmarsenha'])) {
-    $nome = trim($_POST['nome']);
-    $email = trim($_POST['email']);
-    $senha = trim($_POST['senha']);
-    $confirmarSenha = trim($_POST['confirmarsenha']);
-
-    // Validações básicas
-    if ($senha !== $confirmarSenha) {
-        echo "<script>alert('As senhas não coincidem.');</script>";
-        return;
-    }
-
-    // Verifica se o e-mail já está cadastrado
-    if (file_exists($arquivoCadastro)) {
-        $usuarios = file($arquivoCadastro, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-        foreach ($usuarios as $usuario) {
-            $dados = explode(",", $usuario);
-            if ($dados[1] === $email) {
-                echo "<script>alert('E-mail já cadastrado.');</script>";
-                return;
-            }
-        }
-    }
-
-    // Salva o novo usuário
-    $dados = $nome . "," . $email . "," . $senha . "\n";
-    file_put_contents($arquivoCadastro, $dados, FILE_APPEND);
-    echo "<script>alert('Cadastro realizado com sucesso!');</script>";
-}
-
-// Login do usuário
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['emaillogin'], $_POST['senhalogin'])) {
-    $emailLogin = trim($_POST['emaillogin']);
-    $senhaLogin = trim($_POST['senhalogin']);
-
-    // Verifica credenciais no arquivo
-    if (file_exists($arquivoCadastro)) {
-        $usuarios = file($arquivoCadastro, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-        foreach ($usuarios as $usuario) {
-            $dados = explode(",", $usuario);
-            if ($dados[1] === $emailLogin && $dados[2] === $senhaLogin) {
-                echo "<script>alert('Login realizado com sucesso!');</script>";
-                return;
-            }
-        }
-    }
-    echo "<script>alert('Usuário ou senha incorretos.');</script>";
-}
-
-
-?>

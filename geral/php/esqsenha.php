@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="pt-Br">
 
@@ -25,7 +28,7 @@
                 <p>Crie uma senha nova que não seja a mesma que a anterior, possua pelo menos 3 digitos, 2 caracteres especiais e 5 letras. </p>
             </div>
         </div>
-        <form class="form" action="./loginCadastro.php" method="post">
+        <form class="form" action="./esqsenha.php" method="post">
             <div class="quadro">
                 <input class="style-email" type="email" placeholder="E-mail" name="email" required>
             </div>
@@ -125,56 +128,56 @@
 
 
     <?php
-
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $email = $_POST['email'];
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $novaSenha = $_POST['novaSenha'];
-        $confirmarNovaSenha = $_POST['confirmarNovaSenha'];
-
-        // Validação da senha
-        function validarSenha($senha)
-        {
-            if (strlen($senha) < 10) {
-                return "A senha deve ter pelo menos 10 caracteres.";
-            }
-            if (preg_match_all("/[!@#$%^&*(),.?\":{}|<>]/", $senha) < 2) {
-                return "A senha deve conter pelo menos 2 caracteres especiais.";
-            }
-            if (preg_match_all("/[a-zA-Z]/", $senha) < 5) {
-                return "A senha deve conter pelo menos 5 letras.";
-            }
-            return true;
+        $confirmarSenha = $_POST['confirmarNovaSenha'];
+        $email = $_POST['email'];
+        print_r($_POST);
+        // Validação de senha
+        if ($novaSenha !== $confirmarSenha) {
+            echo "<script>alert('phpAs senhas não coincidem.');</script>";
+            exit;
         }
 
-        if ($novaSenha !== $confirmarNovaSenha) {
-            die("As senhas não coincidem. <a href='javascript:history.back()'>Voltar</a>");
-        }
+        // Critérios: 3 dígitos, 2 caracteres especiais e 5 letras
+        // if (!preg_match('/^(?=.*[0-9]{3})(?=.*[!@#$%^&*]{2})(?=.*[a-zA-Z]{5}).{10,}$/', $novaSenha)) {
+        //     echo "<script>alert('phpA senha deve conter ao menos 3 dígitos, 2 caracteres especiais e 5 letras.');</script>";
+        //     exit;
+        // }
 
-        $validacao = validarSenha($novaSenha);
-        if ($validacao !== true) {
-            die($validacao . " <a href='javascript:history.back()'>Voltar</a>");
-        }
+        // Manipulação do arquivo cadastro.txt
+        $arquivo = 'cadastro.txt';
+        $dadosAlterados = '';
+        $senhaAlterada = false;
 
-        // Atualizar senha no arquivo
-        $arquivoCadastro = "cadastro.txt";
-        $linhas = file($arquivoCadastro, FILE_IGNORE_NEW_LINES);
-        $usuarioEncontrado = false;
+        if (file_exists($arquivo)) {
+            $linhas = file($arquivo, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 
-        foreach ($linhas as &$linha) {
-            $dados = explode(",", $linha);
-            if ($dados[1] === $email) {
-                $dados[2] = $novaSenha; // Atualiza a senha
-                $linha = implode(",", $dados);
-                $usuarioEncontrado = true;
+            foreach ($linhas as $linha) {
+                $dados = explode(',', $linha);
+                print_r($dados);
+                // Verifica se o e-mail corresponde
+                if (trim($dados[1]) === $email) {
+                    $dados[2] = $novaSenha; // Atualiza a senha
+                    $senhaAlterada = true;
+                }
+
+                // Reconstrói a linha
+                $dadosAlterados .= implode(',', $dados) . PHP_EOL;
             }
-        }
+            print $dadosAlterados;
+            // Sobrescreve o arquivo com os dados atualizados
+            file_put_contents($arquivo, $dadosAlterados);
 
-        if ($usuarioEncontrado) {
-            file_put_contents($arquivoCadastro, implode("\n", $linhas));
-            echo "<script>alert('Senha redefinida com sucesso!');</script>";
+            if ($senhaAlterada == true) {
+                echo "<script>alert('phpSenha alterada com sucesso!');</script>";
+                session_destroy(); // Limpa a sessão após redefinição
+                header('Location: loginCadastro.php');
+            } else {
+                echo "<script>alert('phpErro: Email não encontrado no registro.');</script>";
+            }
         } else {
-            echo "<script>alert('E-mail não encontrado!');</script>";
+            echo "<script>alert('phpErro: Arquivo de usuários não encontrado.');</script>";
         }
     }
-
     ?>
